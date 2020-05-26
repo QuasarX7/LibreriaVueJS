@@ -1,24 +1,14 @@
-# mio_progetto
+# Sviluppo di componenti per Vue.js
 
-## Project setup
-```
-npm install
-```
+## [1] TabellaMese
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+<img src="public/tabella_mese.png">
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Componente Vue che mostra una tabella temporale dinamica delle attività di tipo mensile.
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<pre><code>
+&lt;tabella-mese mese="11" anno="2020" 
+    righe=" `Mario ROSSI` ,`Maria VERDI` ,`Luigi BIANCHI`"
+    note="`Mario ROSSI` `12-11-2020` `PR`, `Luigi BIANCHI` `01-10-2020` `AS`">
+&lt;/tabella-mese>
+</code></pre>
