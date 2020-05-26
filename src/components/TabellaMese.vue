@@ -65,6 +65,20 @@ export default {
                 {id : 5, giorno : 'Venerdì',    sigla : 'V'},
                 {id : 6, giorno : 'Savato',     sigla : 'S'},
                 {id : 0, giorno : 'Domenica',   sigla : 'D'}
+            ],
+            infoFestivi : [
+                {giorno : 1, mese : 1, festa : 'Capodanno'},
+                {giorno : 6, mese : 1, festa : 'Epifania'},
+                {giorno : 0, mese : 0, festa : 'Pasqua?????'},
+                {giorno : 0, mese : 0, festa : 'Pasquetta?????'},
+                {giorno :25, mese : 4, festa : 'Liberazione'},
+                {giorno : 1, mese : 5, festa : 'F. del Lavoro'},
+                {giorno : 2, mese : 6, festa : 'F. della Repubblica'},
+                {giorno :15, mese : 8, festa : 'Ferragosto'},
+                {giorno : 1, mese :11, festa : 'Tutti i Santi'},
+                {giorno : 8, mese :12, festa : 'Immacolata Concezione'},
+                {giorno :25, mese :12, festa : 'Natale'},
+                {giorno :26, mese :12, festa : 'S. Stefano'}
             ]
         }
     },
@@ -78,8 +92,6 @@ export default {
                 aaaa -= (mm < 3) ? 1 : 0;
                 let valore = (aaaa + Math.trunc(aaaa/4) - Math.trunc(aaaa/100) + Math.trunc(aaaa/400) + t[mm-1] + gg) % 7;
                 const risultato = this.infoGiorni.filter((r) => { return r.id == Math.trunc(valore)});
-                console.log(valore);
-                
                 if(risultato && risultato.length > 0)
                     return risultato[0].sigla;
             }
@@ -222,7 +234,12 @@ export default {
          * @return {object} strile CSS
          */
         coloraFestivi : function(giorno){
-            if(giorno.giornoSettimana == 'D'){ 
+            const risultato = this.infoFestivi.filter((r) => { 
+                return r.giorno === giorno.id && r.mese === this.vistaCorrente.mese
+            });
+            let superfestivo = risultato && risultato.length > 0 ? true : false;
+            
+            if(giorno.giornoSettimana == 'D' || superfestivo){ 
                 return {
                     'background-color' : 'grey',
                     'color' : 'white'
