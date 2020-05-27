@@ -1,6 +1,6 @@
 <template>
     <div id="TabellaMese">
-        <div>
+        <div id="menuTemporale">
             <button @click="indietroMese">&lt;</button>
             <span class="mese">{{filtraMese(vistaCorrente.mese).mese}}</span>
             <button @click="avantiMese">&gt;</button>
@@ -285,6 +285,12 @@ export default {
 </script>
 
 <style scoped>
+#TabellaMese{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+#menuTemporale{
+    text-align: center;
+}
 p{
     margin: 0;
     padding: 0;
