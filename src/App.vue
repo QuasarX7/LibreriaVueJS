@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <login></login>
+    <login hostServer="mio_server/index.php">
+    </login>
     <tabella-mese mese="11" anno="2020" 
                   righe=" `Mario ROSSI` ,`Maria VERDI` ,`Luigi BIANCHI`"
                   note="`Mario ROSSI` `12-11-2020` `PR`, `Luigi BIANCHI` `01-10-2020` `AS`">
