@@ -27,7 +27,7 @@ Form di tipo login.
 
 <img src="public/tabella.png">
 
-Componente Vue che mostra una tabella su cui si può essere applicato un ordinamento o un filtro per colonna. All'interno di ogni celle è possibile anche inserito codice HTML.
+Componente Vue che mostra una tabella su cui può essere applicato un ordinamento o un filtro per colonna. All'interno di ogni celle è possibile anche inserito codice HTML.
 
 <pre><code>
 &lt;tabella  colonne="`CAP`,`Città`,                `Prov.`,  `Regione` "
