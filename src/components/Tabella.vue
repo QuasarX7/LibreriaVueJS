@@ -42,7 +42,7 @@ export default {
             for(const colonna of colonne){
                 const stringa = this.identificaStringa("`",colonna);
                 if(stringa != null){
-                    this.titoliColonne.push({id : indice, nome : stringa.valore, ordine : '↔'});
+                    this.titoliColonne.push({id : indice, nome : stringa.valore, ordine : '⚪'});
                 }
                 indice++;
             }
@@ -94,17 +94,17 @@ export default {
                 if(this.titoliColonne[id].id === colonna.id){
                     let crescente = null;
                     switch(this.titoliColonne[id].ordine){
-                        case '↔' :
-                        case '↑' : 
-                            this.titoliColonne[id].ordine = '↓';
+                        case '⚪' :
+                        case '▲' : 
+                            this.titoliColonne[id].ordine = '▼';
                             crescente = true;
                             break;
-                        case '↓' : 
-                            this.titoliColonne[id].ordine = '↑';
+                        case '▼' : 
+                            this.titoliColonne[id].ordine = '▲';
                             crescente = false;
                             break;
                         default :
-                            this.titoliColonne[id].ordine = '↔';
+                            this.titoliColonne[id].ordine = '⚪';
                             break;
                     }
                     // ordina tabella per id (colonna)
@@ -120,7 +120,7 @@ export default {
                     });
                 }
                 else
-                    this.titoliColonne[id].ordine = '↔';
+                    this.titoliColonne[id].ordine = '⚪';
             }
         },
         filtra : function($event,colonna){
