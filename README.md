@@ -30,7 +30,7 @@ Form di tipo login.
 Componente Vue che mostra una tabella su cui può essere applicato un ordinamento o un filtro per colonna. All'interno di ogni celle è possibile anche inserito codice HTML.
 
 <pre><code>
-&lt;tabella  colonne="`CAP`,`Città`,                `Prov.`,  `Regione` "
+&lt;tabella   colonne="`CAP`,`Città`,                `Prov.`,  `Regione` "
               righe="`80100` `&lt;b>NAPOLI&lt;/b>`          `NA`     `CAMPANIA` , 
                      `81100` `CASERTA`                `CE`     `CAMPANIA` ,
                      `81024` `MADDALONI`              `CE`     `CAMPANIA` ,
@@ -43,7 +43,7 @@ Componente Vue che mostra una tabella su cui può essere applicato un ordinament
                      `00100` `&lt;b>ROMA&lt;/b>`            `RM`     `LAZIO`, 
                      `46040` `CASALROMANO`            `MN`     `LOMBARDIA`, 
                      `20100` `&lt;b>MILANO&lt;/b>`          `MI`     `LOMBARDIA`"
-              >&lt;/tabella>
+>&lt;/tabella>
 </code></pre>
 
 ## [4] Diagramma
