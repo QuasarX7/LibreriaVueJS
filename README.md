@@ -45,3 +45,13 @@ Componente Vue che mostra una tabella su cui può essere applicato un ordinament
                      `20100` `&lt;b>MILANO&lt;/b>`          `MI`     `LOMBARDIA`"
               >&lt;/tabella>
 </code></pre>
+
+## [4] Diagramma
+
+<img src="public/diagramma.png">
+
+Componente Vue che mostra un diagramma XY di una funzione matematica [ y=f(x) ]
+<pre><code>
+&lt;diagramma funzione="x*x*x-3*x-1/2" altezza="550" lunghezza="750" unita="90">&lt;/diagramma>
+
+</code></pre>
