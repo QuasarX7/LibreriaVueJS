@@ -22,6 +22,7 @@
                      `20100` `<b>MILANO</b>`          `MI`     `LOMBARDIA`"
     ></tabella>
     <diagramma funzione="x*x*x-3*x-1/2" altezza="550" lunghezza="750" unita="90"></diagramma>
+    <evento nome="Assenza"></evento>
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import Login from './components/Login.vue'
 import TabellaMese from './components/TabellaMese.vue'
 import Tabella from './components/Tabella.vue'
 import DiagrammaXY from './components/DiagrammaXY.vue'
+import Evento from './components/Evento.vue'
 
 export default {
   name: 'App',
@@ -37,7 +39,8 @@ export default {
     'tabella-mese' : TabellaMese,
     'login' : Login,
     'tabella' : Tabella,
-    'diagramma' : DiagrammaXY
+    'diagramma' : DiagrammaXY,
+    'evento' : Evento
   }
 }
 </script>
