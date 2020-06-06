@@ -41,6 +41,17 @@
                         <textarea cols="35" rows="10"/>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <slot name="pulsante1"> </slot>
+                    </td>
+                    <td>
+                        <slot name="pulsante2"> </slot>
+                    </td>
+                    <td>
+                        <input type="submit"/>
+                    </td>
+                </tr>
             </table>
         </form>
     </div>

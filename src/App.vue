@@ -22,7 +22,14 @@
                      `20100` `<b>MILANO</b>`          `MI`     `LOMBARDIA`"
     ></tabella>
     <diagramma funzione="x*x*x-3*x-1/2" altezza="550" lunghezza="750" unita="90"></diagramma>
-    <evento nome="Assenza"></evento>
+    <evento nome="Assenza">
+      <template v-slot:pulsante1>
+        <input type="button" value="Salva"/>
+      </template>
+      <template v-slot:pulsante2>
+        <input type="button" value="Cancella"/>
+      </template>
+    </evento>
   </div>
 </template>
 
