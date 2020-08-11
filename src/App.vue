@@ -1,12 +1,31 @@
 <template>
   <div id="app">
+    <menù nome="lista" >
+      <voce-menù nome="voce 1" link="#" />
+      <voce-menù nome="voce 2" />
+      <menù nome="lista 2">
+        <voce-menù nome="voce 1a" />
+        <voce-menù nome="voce 2a" />
+      </menù>
+      <voce-menù nome="voce 3" />
+       <menù nome="lista 3 (tre)">
+        <voce-menù nome="voce uno" />
+        <menù nome="lista 4 (quattro)">
+          <voce-menù nome="voce 1b" />
+        </menù>
+        <voce-menù nome="voce due" />
+      </menù>
+    </menù> 
     <img alt="Vue logo" src="./assets/logo.png">
+
     <login hostServer="http://localhost:8080/">
     </login>
+
     <tabella-mese mese="11" anno="2020" 
                   righe=" `Mario ROSSI` ,`Maria VERDI` ,`Luigi BIANCHI`"
                   note="`Mario ROSSI` `12-11-2020` `PR`, `Luigi BIANCHI` `01-10-2020` `AS`">
     </tabella-mese>
+
     <tabella  colonne="`CAP`,`Città`,                `Prov.`,  `Regione` "
               righe="`80100` `<b>NAPOLI</b>`          `NA`     `CAMPANIA` , 
                      `81100` `CASERTA`                `CE`     `CAMPANIA` ,
@@ -21,7 +40,9 @@
                      `46040` `CASALROMANO`            `MN`     `LOMBARDIA`, 
                      `20100` `<b>MILANO</b>`          `MI`     `LOMBARDIA`"
     ></tabella>
+
     <diagramma funzione="x*x*x-3*x-1/2" altezza="550" lunghezza="750" unita="90"></diagramma>
+
     <evento nome="Assenza">
       <template v-slot:pulsante1>
         <input type="button" value="Salva"/>
@@ -30,6 +51,8 @@
         <input type="button" value="Cancella"/>
       </template>
     </evento>
+
+    
   </div>
 </template>
 
@@ -39,6 +62,9 @@ import TabellaMese from './components/TabellaMese.vue'
 import Tabella from './components/Tabella.vue'
 import DiagrammaXY from './components/DiagrammaXY.vue'
 import Evento from './components/Evento.vue'
+import Menu from './components/Menu.vue'
+import VoceMenu from './components/VoceMenu.vue'
+
 
 export default {
   name: 'App',
@@ -47,7 +73,9 @@ export default {
     'login' : Login,
     'tabella' : Tabella,
     'diagramma' : DiagrammaXY,
-    'evento' : Evento
+    'evento' : Evento,
+    'menù' : Menu,
+    'voce-menù' : VoceMenu,
   }
 }
 </script>
