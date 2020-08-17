@@ -6,6 +6,7 @@
                 <li><slot></slot></li>
             </ul>
         </template>
+        <canvas ref="canvas" width="0" height="0" style="display:none"></canvas>
     </div>
 </template>
 
@@ -26,7 +27,15 @@ export default {
                 this.listaVisibile = !this.listaVisibile;
             }
         },
-        lunghezzaMassima : function(divisore=1.0) {
+         getTextWidth : function (text, font) {
+            // re-use canvas object for better performance
+            var canvas =  this.$refs.canvas;
+            var context = canvas.getContext("2d");
+            context.font = font;
+            var metrics = context.measureText(text);
+            return metrics.width;
+        },
+        lunghezzaMassima : function() {
             var max = 0;
             if(this.$refs.menu){
                 if(this.$refs.menu.parentElement.tagName == "LI"){
@@ -34,11 +43,11 @@ export default {
                     let riga = lista.firstChild; // div
                     while(riga){
                         let link = riga.firstChild; // a
-                        if(max < link.textContent.length)
-                            max = link.textContent.length; // lunghezza stringa voce
+                        if(max < this.getTextWidth(link.textContent,"12px Arial"))
+                            max = this.getTextWidth(link.textContent,"12px Arial"); // lunghezza stringa voce
                         riga = riga.nextSibling;
                     }
-                    return max/divisore  + 'em';
+                    return (max/12.0 + 0.77) + 'em';
                 }
             }
             return '100%';
@@ -72,7 +81,7 @@ export default {
                 return {
                     position: 'absolute',
                     top: 0,
-                    left: this.lunghezzaMassima(2.47),
+                    left: this.lunghezzaMassima(),
                     background: 'white',
                     display: 'block',
                     'list-style-type': 'none',
@@ -88,6 +97,10 @@ export default {
 </script>
 
 <style scoped>
+ul{
+    font-family:"Arial";
+    font-size: 14px;
+}
 li{
     margin: 0;
     padding: 0;

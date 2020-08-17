@@ -1,19 +1,22 @@
 <template>
   <div id="app">
-    <menù nome="lista" >
-      <voce-menù nome="voce 1" link="#" />
-      <voce-menù nome="voce 2" />
-      <menù nome="lista 2">
-        <voce-menù nome="voce 1a" />
-        <voce-menù nome="voce 2a" />
+    <menù nome="Animali" >
+      <voce-menù nome="Pesci" link="#" />
+      <voce-menù nome="Anfibi" />
+      <menù nome="Uccelli">
+        <voce-menù nome="Rondini" />
+        <voce-menù nome="Aquile" />
       </menù>
-      <voce-menù nome="voce 3" />
-       <menù nome="lista 3 (tre)">
-        <voce-menù nome="voce uno" />
-        <menù nome="lista 4 (quattro)">
-          <voce-menù nome="voce 1b" />
+      <menù nome="Mammiferi">
+       <menù nome="Carnivori">
+        <voce-menù nome="Canidi" />
+        <menù nome="Felini">
+          <voce-menù nome="Tigre" />
+          <voce-menù nome="Gatto" />
+          <voce-menù nome="Leone" />
         </menù>
-        <voce-menù nome="voce due" />
+        <voce-menù nome="Ursidi" />
+       </menù>
       </menù>
     </menù> 
     <img alt="Vue logo" src="./assets/logo.png">
