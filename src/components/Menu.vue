@@ -1,11 +1,12 @@
 <template>
     <div id="Menu" ref="menu" :style="stileEtichetta">
-        <div :id="nome" style="height:100%" @click="eventoClic">{{nome}}</div>
+        <div :id="nome" style="height:100%;display:inline" @click="eventoClic">{{nome}}</div>
         <template v-if="listaVisibile">
             <ul :style="stile">
                 <li><slot></slot></li>
             </ul>
         </template>
+        <!-- creato solo per poter implementare il metodo di calcolo della lunghezza del testo -->
         <canvas ref="canvas" width="0" height="0" style="display:none"></canvas>
     </div>
 </template>
@@ -27,7 +28,7 @@ export default {
                 this.listaVisibile = !this.listaVisibile;
             }
         },
-         getTextWidth : function (text, font) {
+         lunghezzaTesto : function (text, font) {
             // re-use canvas object for better performance
             var canvas =  this.$refs.canvas;
             var context = canvas.getContext("2d");
@@ -43,8 +44,8 @@ export default {
                     let riga = lista.firstChild; // div
                     while(riga){
                         let link = riga.firstChild; // a
-                        if(max < this.getTextWidth(link.textContent,"12px Arial"))
-                            max = this.getTextWidth(link.textContent,"12px Arial"); // lunghezza stringa voce
+                        if(max < this.lunghezzaTesto(link.textContent,"12px Arial"))
+                            max = this.lunghezzaTesto(link.textContent,"12px Arial"); // lunghezza stringa voce
                         riga = riga.nextSibling;
                     }
                     return (max/12.0 + 0.77) + 'em';
@@ -66,7 +67,7 @@ export default {
         },
         stile : function(){
             // se è il primo livello, il menu camparirà sotto
-            if(this.$refs.menu.parentElement.tagName != "LI")
+            if(this.$refs.menu.parentElement.tagName != "LI")// se <span>
                 return {
                     position: 'absolute',
                     top: '2em',
@@ -97,13 +98,13 @@ export default {
 </script>
 
 <style scoped>
-ul{
+#Menu{
     font-family:"Arial";
     font-size: 14px;
 }
 li{
     margin: 0;
     padding: 0;
-    border: 1px solid gray;
+    border: 1px solid gray !important;
 }
 </style>

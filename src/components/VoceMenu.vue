@@ -31,8 +31,6 @@ export default {
     display: block;
     width: '100%';
     white-space: nowrap;
-    padding:0;
-    margin: 0;
     border-top: 1px solid gray;
 }
 a{
