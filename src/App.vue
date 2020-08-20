@@ -1,24 +1,28 @@
 <template>
   <div id="app">
-    <menù nome="Animali" >
-      <voce-menù nome="Pesci" link="#" />
-      <voce-menù nome="Anfibi" />
-      <menù nome="Uccelli">
-        <voce-menù nome="Rondini" />
-        <voce-menù nome="Aquile" />
-      </menù>
-      <menù nome="Mammiferi">
-       <menù nome="Carnivori">
-        <voce-menù nome="Canidi" />
-        <menù nome="Felini">
-          <voce-menù nome="Tigre" />
-          <voce-menù nome="Gatto" />
-          <voce-menù nome="Leone" />
+    <barra-menù>
+      <menù nome="Animali" >
+        <voce-menù nome="Pesci" link="#" />
+        <voce-menù nome="Anfibi" />
+        <menù nome="Uccelli">
+          <voce-menù nome="Rondini" />
+          <voce-menù nome="Aquile" />
         </menù>
-        <voce-menù nome="Ursidi" />
-       </menù>
-      </menù>
-    </menù> 
+        <menù nome="Mammiferi">
+        <menù nome="Carnivori">
+          <voce-menù nome="Canidi" />
+          <menù nome="Felini">
+            <voce-menù nome="Tigre" />
+            <voce-menù nome="Gatto" />
+            <voce-menù nome="Leone" />
+          </menù>
+          <voce-menù nome="Ursidi" />
+        </menù>
+        </menù>
+      </menù> 
+      <voce-menù nome="Piante" />
+      <voce-menù nome="Funghi" />
+    </barra-menù>
     <img alt="Vue logo" src="./assets/logo.png">
 
     <login hostServer="http://localhost:8080/">
@@ -67,6 +71,7 @@ import DiagrammaXY from './components/DiagrammaXY.vue'
 import Evento from './components/Evento.vue'
 import Menu from './components/Menu.vue'
 import VoceMenu from './components/VoceMenu.vue'
+import BarraMenu from './components/BarraMenu.vue'
 
 
 export default {
@@ -79,6 +84,7 @@ export default {
     'evento' : Evento,
     'menù' : Menu,
     'voce-menù' : VoceMenu,
+    'barra-menù' : BarraMenu
   }
 }
 </script>
