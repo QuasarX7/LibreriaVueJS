@@ -14,7 +14,7 @@ Vue.use(Vuex);
 
 const MemoriaMenu = {
     AGGIUNGI_MENU_SELEZZIONATO : "aggiungiNomeMenu",
-    AGGIUNGI_LIV_MENU_SELEZZIONATO : "aggiungiLivelloMenu"
+    LIVELLO_MENU_SELEZZIONATO : "livelloMenuCorrente"
 };
 
 const store = new Vuex.Store({
@@ -38,7 +38,7 @@ const store = new Vuex.Store({
         [MemoriaMenu.AGGIUNGI_MENU_SELEZZIONATO] : function(state,menu){
             state.menu.push(menu);
         },
-        [MemoriaMenu.AGGIUNGI_LIV_MENU_SELEZZIONATO] : function(state,livello){
+        [MemoriaMenu.LIVELLO_MENU_SELEZZIONATO] : function(state,livello){
             while(livello >= 0 && livello < state.menu.length){
                 state.menu.pop();
             }
@@ -46,9 +46,8 @@ const store = new Vuex.Store({
     },
     actions : {
         aggiungiMenuCorrente: function(context, oMenu){
-            context.commit(MemoriaMenu.AGGIUNGI_LIV_MENU_SELEZZIONATO, oMenu.livello);
+            context.commit(MemoriaMenu.LIVELLO_MENU_SELEZZIONATO, oMenu.livello);
             context.commit(MemoriaMenu.AGGIUNGI_MENU_SELEZZIONATO, oMenu.menu);
-            console.log("xxx");
         }
     }
 });

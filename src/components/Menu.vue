@@ -1,5 +1,5 @@
 <template>
-    <div id="Menu" ref="menu" :style="stileEtichetta">
+    <div id="Menu" ref="menu" >
         <div :id="nome" style="height:100%;display:inline" @click="eventoClic">{{nome}}</div>
         <template v-if="listaVisibile">
             <ul :style="stile">
@@ -71,16 +71,6 @@ export default {
         }
     },
     computed : {
-        stileEtichetta : function() {
-            return {
-                position: 'relative',
-                display: 'block',
-                'white-space': 'nowrap',
-                padding:'0.4em',
-                'border-top': '1px solid gray',
-                cursor: 'pointer'
-            };
-        },
         stile : function(){
             // se è il primo livello, il menu camparirà sotto
             if(this.$refs.menu.parentElement.tagName != "LI")// se <span>
@@ -106,17 +96,20 @@ export default {
                     padding: 0
                 };
         },
+        /**
+         * Rende visibile i menu della voce selezionata (e quello dei genitori)
+         * N.B.: utilizzo della libreria 'Vuex'
+         */
         listaVisibile : function(){
-console.log(' liv attuale: '+this.livelloMenu +'-> '+this.nome);
-console.log(' liv mem: '+this.$store.getters.livelloMenu +'-> '+this.$store.getters.menuSelezionato);
-console.log('');
-            console.log('-->',this.$store.getters.sequenzaMenu);
+            // [1] menu posti nello stesso livello di quello corrente
             if(this.$store.getters.livelloMenu +1 == this.livelloMenu){
-                console.log('a');
                 return this.nome == this.$store.getters.menuSelezionato;
             }
+
+            // [2] menu posti nei livelli diversi da qullo corrente
             var oContext = this;
-            return this.$store.getters.sequenzaMenu.find(function(sVoce){return sVoce == oContext.nome}) != null;
+            // si impedisce l'eliminazione dei menu genitori di quello corrente
+            return this.$store.getters.sequenzaMenu.find((sVoce)=>{return sVoce == oContext.nome}) != null;
         }
     },
     mounted : function(){
@@ -133,6 +126,12 @@ console.log('');
 #Menu{
     font-family:"Arial";
     font-size: 14px;
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    padding:0.4em;
+    border-top: 1px solid gray;
+    cursor: pointer;
 }
 li{
     margin: 0;
