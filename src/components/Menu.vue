@@ -12,12 +12,14 @@
 </template>
 
 <script>
+
+
 export default {
     name : 'Menu',
     props : ['nome'],
     data : function(){
         return {
-            listaVisibile : false
+            livelloMenu : 0
         }
     },
     
@@ -25,7 +27,8 @@ export default {
         eventoClic : function(e){
             if(e.target.id === this.nome){ 
                 // la commutazione avviene solo per l'elemento "Menu" che lo ha generato
-                this.listaVisibile = !this.listaVisibile;
+                this.$store.dispatch('aggiungiMenuCorrente', {menu: this.nome, livello:this.livelloMenu-1});
+                
             }
         },
          lunghezzaTesto : function (text, font) {
@@ -52,6 +55,19 @@ export default {
                 }
             }
             return '100%';
+        },
+        livello : function(){
+            var indice=0;
+            if(this.$refs.menu){
+                let nodoGenitore = this.$refs.menu.parentElement;
+                if(nodoGenitore){
+                    while(nodoGenitore.tagName == "LI"){
+                        indice++;
+                        nodoGenitore = nodoGenitore.parentElement.parentElement.parentElement;
+                    }
+                }
+            }
+            return indice;
         }
     },
     computed : {
@@ -89,9 +105,25 @@ export default {
                     margin: 0,
                     padding: 0
                 };
+        },
+        listaVisibile : function(){
+console.log(' liv attuale: '+this.livelloMenu +'-> '+this.nome);
+console.log(' liv mem: '+this.$store.getters.livelloMenu +'-> '+this.$store.getters.menuSelezionato);
+console.log('');
+            console.log('-->',this.$store.getters.sequenzaMenu);
+            if(this.$store.getters.livelloMenu +1 == this.livelloMenu){
+                console.log('a');
+                return this.nome == this.$store.getters.menuSelezionato;
+            }
+            var oContext = this;
+            return this.$store.getters.sequenzaMenu.find(function(sVoce){return sVoce == oContext.nome}) != null;
         }
     },
     mounted : function(){
+        this.livelloMenu = this.livello()+1;
+    },
+    watch : {
+        
     }
 
 }

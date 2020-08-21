@@ -7,12 +7,59 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex);
+
+const MemoriaMenu = {
+    AGGIUNGI_MENU_SELEZZIONATO : "aggiungiNomeMenu",
+    AGGIUNGI_LIV_MENU_SELEZZIONATO : "aggiungiLivelloMenu"
+};
+
+const store = new Vuex.Store({
+    state : {
+        menu : []
+    },
+    getters : {
+        menuSelezionato: function(state){
+            if(state.menu.length > 0)
+                return state.menu[state.menu.length-1];
+        },
+        livelloMenu: function(state){
+            return state.menu.length;
+        },
+        sequenzaMenu: function(state){
+            return state.menu;
+        },
+
+    },
+    mutations : {
+        [MemoriaMenu.AGGIUNGI_MENU_SELEZZIONATO] : function(state,menu){
+            state.menu.push(menu);
+        },
+        [MemoriaMenu.AGGIUNGI_LIV_MENU_SELEZZIONATO] : function(state,livello){
+            while(livello >= 0 && livello < state.menu.length){
+                state.menu.pop();
+            }
+        }
+    },
+    actions : {
+        aggiungiMenuCorrente: function(context, oMenu){
+            context.commit(MemoriaMenu.AGGIUNGI_LIV_MENU_SELEZZIONATO, oMenu.livello);
+            context.commit(MemoriaMenu.AGGIUNGI_MENU_SELEZZIONATO, oMenu.menu);
+            console.log("xxx");
+        }
+    }
+});
+
 export default {
     name : 'BarraMenu',
     props : [],
     data : function(){
         return {}
     },
+    store
 }
 </script>
 
