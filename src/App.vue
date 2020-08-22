@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <barra-menù>
+    <barra-menù colore="white" sfondo="black">
       <menù nome="Animali" >
-        <voce-menù nome="Pesci" link="#" />
+        <voce-menù nome="Pesci" link="#" colore="blue" sfondo="red"/>
         <voce-menù nome="Anfibi" />
         <menù nome="Uccelli">
           <voce-menù nome="Rondini" />
