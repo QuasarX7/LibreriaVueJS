@@ -1,6 +1,6 @@
 <template>
-    <div id="Menu" ref="menu" >
-        <div :id="nome" style="height:100%;display:inline" @click="eventoClic">{{nome}}</div>
+    <div id="Menu" ref="menu" :style="stileMenu">
+        <div :id="nome" style="height:100%;display:inline;color:inherit;background:inherit;" @click="eventoClic">{{nome}} <span>{{freccia}}</span></div>
         <template v-if="listaVisibile">
             <ul :style="stile">
                 <li><slot></slot></li>
@@ -16,10 +16,11 @@
 
 export default {
     name : 'Menu',
-    props : ['nome'],
+    props : ['nome','colore','sfondo'],
     data : function(){
         return {
-            livelloMenu : 0
+            livelloMenu : 0,
+            freccia : ''
         }
     },
     
@@ -47,11 +48,11 @@ export default {
                     let riga = lista.firstChild; // div
                     while(riga){
                         let link = riga.firstChild; // a
-                        if(max < this.lunghezzaTesto(link.textContent,"12px Arial"))
-                            max = this.lunghezzaTesto(link.textContent,"12px Arial"); // lunghezza stringa voce
+                        if(max < this.lunghezzaTesto(link.textContent + ' X',"12px Arial"))
+                            max = this.lunghezzaTesto(link.textContent + ' X',"12px Arial"); // lunghezza stringa voce
                         riga = riga.nextSibling;
                     }
-                    return (max/12.0 + 0.77) + 'em';
+                    return (max/12.0) + 'em';
                 }
             }
             return '100%';
@@ -70,7 +71,16 @@ export default {
             return indice;
         }
     },
+
     computed : {
+        stileMenu : function(){
+            return {
+                '--color' : this.colore,
+                '--background' : this.sfondo,
+                '--color-hover' : this.sfondo,
+                '--background-hover' : this.colore
+            };
+        },
         stile : function(){
             // se è il primo livello, il menu camparirà sotto
             if(this.$refs.menu.parentElement.tagName != "LI")// se <span>
@@ -78,8 +88,8 @@ export default {
                     position: 'absolute',
                     top: '2em',
                     left: '0em',
-                    background: 'white',
-                    display: 'block',
+                    width: 'auto',
+                    display: 'inline-block',
                     'list-style-type': 'none',
                     margin: 0,
                     padding: 0
@@ -89,7 +99,6 @@ export default {
                     position: 'absolute',
                     top: 0,
                     left: this.lunghezzaMassima(),
-                    background: 'white',
                     display: 'block',
                     'list-style-type': 'none',
                     margin: 0,
@@ -114,6 +123,13 @@ export default {
     },
     mounted : function(){
         this.livelloMenu = this.livello()+1;
+        
+        // se è il primo livello, comparirà la freccia ▼
+        if(this.$refs.menu.parentElement.tagName != "LI")// se <span>
+            this.freccia = '▼';
+        else // se è un sottolivello, comparirà la freccia ►
+            this.freccia = '►';
+        
     },
     watch : {
         
@@ -133,9 +149,24 @@ export default {
     border-top: 1px solid gray;
     cursor: pointer;
 }
+
+div{
+    color : var(--color);
+    background: var(--background);
+}
+div:hover{
+    color : var(--color-hover);
+    background: var(--background-hover);
+}
+
 li{
     margin: 0;
     padding: 0;
     border: 1px solid gray !important;
+    width:max-content;
+}
+span{
+    padding-left: 0.5em;
+     float:right ; /* must be equal to parent's right padding */
 }
 </style>

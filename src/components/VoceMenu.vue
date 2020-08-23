@@ -1,5 +1,5 @@
 <template>
-    <div id="VoceMenu">
+    <div id="VoceMenu" :style="stile">
         <a :href="collegamento">{{nome}}</a>
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
     name : 'VoceMenu',
-    props : ['nome','link'],
+    props : ['nome','link','colore','sfondo'],
     data : function(){
         return {
             collegamento : ''
@@ -15,6 +15,16 @@ export default {
     },
     methods : {
 
+    },
+    computed : {
+        stile : function(){
+            return {
+                '--color' : this.colore,
+                '--background' : this.sfondo,
+                '--color-hover' : this.sfondo,
+                '--background-hover' : this.colore
+            };
+        }
     },
     created :function(){
         if(this.link){
@@ -33,6 +43,16 @@ export default {
     white-space: nowrap;
     border-top: 1px solid gray;
 }
+
+div{
+    color : var(--color);
+    background: var(--background);
+}
+div:hover{
+    color : var(--color-hover);
+    background: var(--background-hover);
+}
+
 a{
     display: inline-block;
     outline: none;
@@ -41,6 +61,6 @@ a{
     margin: 0;
 }
 a:link, a:visited {
-  color: black;
+  color: inherit; /*eredita*/
 }
 </style>

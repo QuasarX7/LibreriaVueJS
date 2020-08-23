@@ -11,7 +11,7 @@
         <menù nome="Mammiferi">
         <menù nome="Carnivori">
           <voce-menù nome="Canidi" />
-          <menù nome="Felini">
+          <menù nome="Felini" colore='red' sfondo='grey'>
             <voce-menù nome="Tigre" />
             <voce-menù nome="Gatto" />
             <voce-menù nome="Leone" />

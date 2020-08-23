@@ -1,5 +1,5 @@
 <template>
-    <div id="BarraMenu">
+    <div id="BarraMenu" :style="stile">
         <ul>
             <li><span><slot></slot></span></li>
         </ul>
@@ -54,11 +54,24 @@ const store = new Vuex.Store({
 
 export default {
     name : 'BarraMenu',
-    props : [],
+    props : ['colore','sfondo'],
     data : function(){
         return {}
     },
-    store
+    store,
+    computed : {
+        stile : function(){
+            return {
+                '--color' : this.colore,
+                '--background' : this.sfondo,
+                '--color-hover' : this.sfondo,
+                '--background-hover' : this.colore
+            };
+        }
+    },
+    mounted : function(){
+    }
+
 }
 </script>
 
@@ -66,7 +79,18 @@ export default {
 #BarraMenu{
     font-family:"Arial";
     font-size: 14px;
+    width: 100%;
 }
+
+div{
+    color : var(--color);
+    background: var(--background);
+}
+div:hover{
+    color : var(--color-hover);
+    background: var(--background-hover);
+}
+
 ul{
     list-style-type: none;
     margin: 0;
@@ -77,5 +101,4 @@ li div, li div div{
     display: inline-block !important;
     border: 1px solid gray;
 }
-
 </style>
