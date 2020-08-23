@@ -1,6 +1,6 @@
 <template>
     <div id="Menu" ref="menu" :style="stileMenu">
-        <div :id="nome" style="height:100%;display:inline;color:inherit;background:inherit;" @click="eventoClic">{{nome}} <span>{{freccia}}</span></div>
+        <div :id="nome" style="height:100%;display:inline;color:inherit;background:inherit;cursor:pointer;" @click="eventoClic">{{nome}} <span>{{freccia}}</span></div>
         <template v-if="listaVisibile">
             <ul :style="stile">
                 <li><slot></slot></li>
@@ -147,7 +147,6 @@ export default {
     white-space: nowrap;
     padding:0.4em;
     border-top: 1px solid gray;
-    cursor: pointer;
 }
 
 div{
@@ -167,6 +166,7 @@ li{
 }
 span{
     padding-left: 0.5em;
-     float:right ; /* must be equal to parent's right padding */
+    float:right ; 
+    cursor:default;
 }
 </style>
